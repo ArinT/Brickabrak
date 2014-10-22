@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-public class Manipulate_Sphere : MonoBehaviour {
+public class ManipulateSphere : MonoBehaviour {
 	public float angle;
 	public float x;
 	public float z;

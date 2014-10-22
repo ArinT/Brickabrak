@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Manipulate_paddle : MonoBehaviour {
+public class ManipulatePaddle : MonoBehaviour {
 	public Vector3 direction;
 	public float speed = 5f;
 	// Use this for initialization

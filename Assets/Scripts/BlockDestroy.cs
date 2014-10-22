@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Block_Destroy : MonoBehaviour {
+public class BlockDestroy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
