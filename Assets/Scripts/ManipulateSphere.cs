@@ -2,12 +2,14 @@ using UnityEngine;
 using System.Collections;
 public class ManipulateSphere : MonoBehaviour {
 	public float angle;
-	public float x;
-	public float z;
-	public float minspeed = 20f;
-	public float maxspeed = 30f;
-	public float speed;
-	public float multiplier = 1.01f;
+	float x;
+	float z;
+	float minspeed = 20f;
+	float maxspeed = 30f;
+	float multiplier = 1.01f;
+	public AudioSource wallAudio;
+	public AudioSource paddleAudio;
+	public AudioSource blockAudio;
 	// Use this for initialization
 	void Start () {
 		rigidbody.velocity = new Vector3(20,0,10);
@@ -68,11 +70,16 @@ public class ManipulateSphere : MonoBehaviour {
 		checkVerticalAngle ();
 		checkHorizontalAngle ();
 		checkMaxSpeed ();
-		speed = rigidbody.velocity.magnitude;
 	}
 	void OnCollisionEnter(Collision collision)
 	{
 		rigidbody.velocity *= multiplier;
+		if (collision.collider.tag == "Wall")
+			wallAudio.Play();
+		if (collision.collider.tag == "Player")
+			paddleAudio.Play ();
+		if (collision.collider.tag == "Block")
+			blockAudio.Play();
 	}
 	
 }
