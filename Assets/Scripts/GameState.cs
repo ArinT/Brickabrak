@@ -11,10 +11,6 @@ public class GameState : MonoBehaviour {
 		lives = 3;
 		gameOver = false;
 	}
-	public void endGame()
-	{
-		gameOver = true;
-	}
 	public void increaseScore ()
 	{
 		score+=100;
@@ -25,9 +21,8 @@ public class GameState : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (gameOver)
+		if (GameObject.FindGameObjectsWithTag("Block").Length == 0)
 		{
-			Debug.Log("End");
 			Application.LoadLevel("EndGame");
 		}
 	}

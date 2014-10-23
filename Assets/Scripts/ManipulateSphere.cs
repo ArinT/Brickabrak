@@ -84,12 +84,6 @@ public class ManipulateSphere : MonoBehaviour {
 		checkHorizontalAngle ();
 		checkMaxSpeed ();
 	}
-	void checkForEndCondition()
-	{
-		GameObject[] objs = GameObject.FindGameObjectsWithTag("Block");
-		if (objs.Length == 1)
-			GameObject.FindGameObjectWithTag("GameController").GetComponent<GameState>().endGame();
-	}
 	void OnCollisionEnter(Collision collision)
 	{
 		rigidbody.velocity *= multiplier;
@@ -104,7 +98,6 @@ public class ManipulateSphere : MonoBehaviour {
 		case "Block":
 			blockAudio.Play();
 			gameController.GetComponent<GameState>().increaseScore();
-			checkForEndCondition();
 			break;
 		}
 	}

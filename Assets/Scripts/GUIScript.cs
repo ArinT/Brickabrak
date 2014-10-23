@@ -1,16 +1,13 @@
+
+//C#
 using UnityEngine;
 using System.Collections;
 
 public class GUIScript : MonoBehaviour {
-
-	// Use this for initialization
-	int score;
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		score = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameState>().score;
-		guiText.text = score.ToString();
-	}
+            
+    void OnGUI () {
+        // Make a background box
+		int score = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameState>().score;
+        GUI.Box(new Rect(10,10,100,20), score.ToString());
+    }
 }
