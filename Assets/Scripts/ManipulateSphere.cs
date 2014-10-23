@@ -10,11 +10,18 @@ public class ManipulateSphere : MonoBehaviour {
 	public AudioSource wallAudio;
 	public AudioSource paddleAudio;
 	public AudioSource blockAudio;
+	public GameObject gameController;
+	public bool fail;
 	// Use this for initialization
 	void Start () {
-		rigidbody.velocity = new Vector3(20,0,10);
+		fail = false;
+		rigidbody.velocity = new Vector3(generateRandom(),0,20);
+		gameController = GameObject.FindGameObjectWithTag("GameController");
 	}
-
+	int generateRandom()
+	{
+		return (int)(Random.value*40-20);
+	}
 	void checkVerticalAngle ()
 	{
 		if (angle > 70 || angle < -70)
@@ -60,7 +67,13 @@ public class ManipulateSphere : MonoBehaviour {
 	}
 
 	
-	
+	public void Reset()
+	{
+		Vector3 position = GameObject.FindGameObjectWithTag("Player").transform.position;
+		position.z += 2;
+		transform.position = position;
+		rigidbody.velocity = new Vector3(generateRandom(),0, 20);
+	}
 	// Update is called once per frame
 	void Update () {
 		checkMinSpeed ();
@@ -71,15 +84,29 @@ public class ManipulateSphere : MonoBehaviour {
 		checkHorizontalAngle ();
 		checkMaxSpeed ();
 	}
+	void checkForEndCondition()
+	{
+		GameObject[] objs = GameObject.FindGameObjectsWithTag("Block");
+		if (objs.Length == 1)
+			GameObject.FindGameObjectWithTag("GameController").GetComponent<GameState>().endGame();
+	}
 	void OnCollisionEnter(Collision collision)
 	{
 		rigidbody.velocity *= multiplier;
-		if (collision.collider.tag == "Wall")
+		switch (collision.collider.tag)
+		{
+		case "Wall":
 			wallAudio.Play();
-		if (collision.collider.tag == "Player")
+			break;
+		case "Player":
 			paddleAudio.Play ();
-		if (collision.collider.tag == "Block")
+			break;
+		case "Block":
 			blockAudio.Play();
+			gameController.GetComponent<GameState>().increaseScore();
+			checkForEndCondition();
+			break;
+		}
 	}
 	
 }
