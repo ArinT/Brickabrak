@@ -6,7 +6,9 @@ public class ManipulateSphere : MonoBehaviour {
 	float z;
 	float minspeed = 20f;
 	float maxspeed = 30f;
-	float multiplier = 1.01f;
+	float chilispeed = 32f;
+	public float speed;
+	float multiplier = 1.08f;
 	public AudioSource wallAudio;
 	public AudioSource paddleAudio;
 	public AudioSource blockAudio;
@@ -65,7 +67,16 @@ public class ManipulateSphere : MonoBehaviour {
 			rigidbody.velocity = rigidbody.velocity/rigidbody.velocity.magnitude*maxspeed;
 		}
 	}
+	void checkForChili()
+	{
+		if (GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameState> ().isChili) {
+						rigidbody.velocity *= 1.5f;
+						maxspeed = chilispeed;
 
+				} else {
+			maxspeed = 30f;
+				}
+	}
 	
 	public void Reset()
 	{
@@ -76,6 +87,7 @@ public class ManipulateSphere : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+		checkForChili ();
 		checkMinSpeed ();
 		x = rigidbody.velocity.x;
 		z = rigidbody.velocity.z;
@@ -83,6 +95,7 @@ public class ManipulateSphere : MonoBehaviour {
 		checkVerticalAngle ();
 		checkHorizontalAngle ();
 		checkMaxSpeed ();
+		speed = rigidbody.velocity.magnitude;
 	}
 	void OnCollisionEnter(Collision collision)
 	{
