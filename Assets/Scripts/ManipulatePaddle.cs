@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ManipulatePaddle : MonoBehaviour {
 	public Vector3 direction;
-	public float speed = 5f;
+	public float speed = 6.5f;
 	public float border = 25;
 	// Use this for initialization
 	void Start () {

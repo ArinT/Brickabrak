@@ -7,6 +7,7 @@ public class BlockDestroy : MonoBehaviour {
 	public Sprite spriteA;
 	public Sprite spriteB;
 	public SpriteRenderer spriteRenderer;
+	public GameObject foodball;
 	//public Texture textureA = Resources.Load("Textures/Grass");
 	// Use this for initialization
 	void Start () {
@@ -21,12 +22,21 @@ public class BlockDestroy : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision collision)
 	{
-		hitCounter--;
-		if (hitCounter == 1) {
-						spriteRenderer.sprite = spriteB;
-				}
-		if (hitCounter == 0) {
-						Destroy (gameObject);
-				}
-		}
+		if (collision.collider.gameObject.tag=="Ball")
+		{
+			hitCounter--;
+			if (hitCounter == 1) {
+							spriteRenderer.sprite = spriteB;
+					}
+			if (hitCounter == 0) {
+				int num = Random.Range(0,100);
+				print (num);
+							if (num > 66)
+							{
+								Instantiate(foodball, this.transform.position, this.transform.rotation);
+							}
+							Destroy (gameObject);
+					}
+			}
+	}
 }

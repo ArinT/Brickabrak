@@ -32,7 +32,7 @@ public class PusheenPaw : MonoBehaviour {
 	}
 	void OnTriggerStay(Collider collider)
 	{
-		if (collider.tag == "Ball")
+		if (collider.tag == "Ball" || collider.tag == "Foodball")
 		{
 			trigger = false;
 		}

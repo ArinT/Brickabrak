@@ -11,14 +11,19 @@ public class FailureZone : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider target)
 	{
-		if (target.collider.tag == "Ball")
-			fail = true;
-			script.Reset();
+		if (target.collider.tag == "Ball") {
+						fail = true;
+						script.Reset ();
+				}
+		else if (target.collider.tag == "Foodball"){
+			GameObject.Destroy(target.gameObject);
+		}
 	}
 	void OnTriggerExit(Collider target)
 	{
-		if (target.collider.tag == "Ball")
-			fail = false;
+		if (target.collider.tag == "Ball") {
+						fail = false;
+				}
 	}
 	
 }
