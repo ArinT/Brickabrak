@@ -5,21 +5,24 @@ public class PusheenPaw : MonoBehaviour {
 
 	GameObject paw;
 	public double tParam = 1f;
+	public float frames = 6f;
+	float increment= .1f;
 	public bool trigger = false;
-	public int startPos = 15;
-	public int endPos = 30;
+	public int startPos = 18;
+	public int endPos = 24;
 	public float pos;
 	// Use this for initialization
 	void Start () {
 		paw = GameObject.FindGameObjectWithTag ("PusheenPaw");
+		increment = 1.0f / frames;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (trigger) {
-						tParam = tParam < 1.0f ? tParam + 0.1f : tParam;		
+						tParam = tParam < 1.0f ? tParam + increment : tParam;		
 				} else {
-						tParam = tParam > 0.0f ? tParam - 0.1f : tParam;
+						tParam = tParam > 0.0f ? tParam - increment : tParam;
 				}
 
 		pos = Mathf.Lerp((float)startPos, (float)endPos, (float)tParam);
