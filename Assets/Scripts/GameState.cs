@@ -30,5 +30,9 @@ public class GameState : MonoBehaviour {
 		{
 			Application.LoadLevel("EndGame");
 		}
+		else if (lives <= 0)
+		{	
+			Application.LoadLevel("EndGame");
+		}
 	}
 }

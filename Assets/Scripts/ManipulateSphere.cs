@@ -113,10 +113,8 @@ public class ManipulateSphere : MonoBehaviour {
 			gameController.GetComponent<GameState>().increaseScore();
 			break;
 		case "PusheenPaw":
-			print("yo");
 			if (this.tag=="Foodball")
 			{
-				print ("sup");
 				GameObject.Destroy(this.gameObject);
 			}
 			break;

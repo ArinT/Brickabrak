@@ -29,9 +29,7 @@ public class BlockDestroy : MonoBehaviour {
 							spriteRenderer.sprite = spriteB;
 					}
 			if (hitCounter == 0) {
-				int num = Random.Range(0,100);
-				print (num);
-							if (num > 66)
+				if (Random.Range(0,100) > 66)
 							{
 								Instantiate(foodball, this.transform.position, this.transform.rotation);
 							}
